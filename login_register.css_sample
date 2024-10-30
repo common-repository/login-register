@@ -1,0 +1,30 @@
+.login_register_wrapper{
+margin:100px;
+padding:10px;
+display:block;
+width:550px;
+background-color:white;
+}
+
+.login_register_wrapper strong{
+display:block;
+}
+
+div#login_register_div.login_register_div >* p, div#login_register_div.login_register_div form#loginform_ajax p,div#login_register_div.login_register_div form#register_ajax p{
+display:block;
+text-align:left;
+}
+
+div#login_register_div.login_register_div >* input{
+display:block;
+}
+
+div#login_register_div.login_register_div >* input[type=text], div#login_register_div.login_register_div >* input[type=password]{
+width:250px;
+}
+
+div#login_register_div.login_register_div >* label{
+padding-top:3px;
+color:green;
+display:inline;
+}

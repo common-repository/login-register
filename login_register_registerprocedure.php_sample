@@ -1,0 +1,31 @@
+<?php
+# File: login_register/login_register_registerprocedure.php_sample
+# Usage: copy this file to login_register_registerprocedure.php and edit to customize the registration procedure.
+# This code defines two methods in the class login_register_registerprocedure, processregister() and registrationform()
+# processregister() completely replaces the default procedure of performing new user registration.
+# registrationform() augments the registration form controls for customization.
+
+if ( ! class_exists('login_register_registerprocedure') ) {
+
+  class login_register_registerprocedure {
+  
+    public function registrationform($user_login,$user_email) {
+      return "<p>Define this procedure to offer form input fields for new user registration. The return result of this method should be HTML that will be inserted inside the &lt;form&gt; element of the registration form.</p>";
+    }
+
+    public function processregister($user_login='',$user_email='',$user_pass='',$minpasswordlength,$captchaok,$inviteok=true {
+      _e('<strong>ERROR</strong>: Define this procedure to handle unique user id checking, user creation, and user email notifications. This procedure returns an associated array with two elements, (1) user_id and (2) errors. This procedure will completely replace the registration process defined by default in the login_registration plugin');
+      $errors['sample'] = 'sample error';
+      if ( empty($user_login) ) $errors['user_login'] = __('<strong>ERROR</strong>: user_login is missing.');
+      if ( empty($user_email) ) $errors['user_email'] = __('<strong>ERROR</strong>: user_email is missing.');
+      if ( empty($user_pass) ) $errors['user_pass'] = __('<strong>ERROR</strong>: user_pass is missing.');
+      if ( ! $captchaok ) $errors['captcha'] = __('<strong>ERROR</strong>: captcha error.');
+      if ( ! $inviteok ) $errors['invite'] = __('<strong>ERROR</strong>: invitation code in error.');
+      $user_id = 0; # new user id will be returned here upon successfull account creation.
+      return(array('user_id'=>$user_id,'errors'=>$errors));
+    }
+  }
+
+}
+
+# vim: syntax=php

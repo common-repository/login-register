@@ -1,0 +1,16 @@
+<?php
+# File: login_register/login_register_mailer.php_sample
+# Usage: copy this file to login_register_mailer.php and edit to customize the mail sender.
+
+if ( ! class_exists('login_register_mailer') ) {
+  class login_register_mailer {
+
+    # same interface as wp_mail:   wp_mail( $to, $subject, $message, $headers, $attachments );
+    public function sendemail( $to, $subject, $message, $headers='', $attachments=array() ) {
+      return wp_mail( $to, $subject, $message, $headers, $attachments );
+    }
+  }
+}
+
+# vim: syntax=php
+?>

@@ -1,0 +1,36 @@
+Here is an example on embedding the registration form in to a page using AJAX:
+
+<div id="embed_login_register"></div>
+<script type="text/javascript">// <![CDATA[
+window.my_jso = {
+
+  preploginform: function() {
+    var d = document.getElementById('embed_login_register'); if ( ! d ) return;
+
+    var script = document.createElement('script');
+    script.src = '/wp-content/plugins/login-register/login_register_ajax.js';
+    script.type = 'text/javascript';
+    script.defer = true;
+    script.id = 'login_register_ajax_jso_script';
+    var head = document.getElementsByTagName('head').item(0);
+    head.appendChild(script);
+
+    jQuery.ajax({
+       type: 'POST',
+       data: 'redirect_to=/forums/',
+       url: '/wp-content/plugins/login-register/login_register_ajax.php?login_register_ajax=getloginform',
+       dataType: 'json',
+       success: window.my_jso._preploginform_callback
+    });
+
+  },
+  
+  _preploginform_callback: function(result) {
+    var d = document.getElementById('embed_login_register'); if ( ! d ) return;
+    if ( result && result.status == 'ok' && result.html ) d.innerHTML = result.html;
+    return;
+  }
+  
+}
+jQuery(document).ready(function() {window.my_jso.preploginform();});
+// ]]></script>
